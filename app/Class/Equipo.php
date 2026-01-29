@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Class;
+use App\Model\EquipoModel;
 use JsonSerializable;
 
 class Equipo implements JsonSerializable
@@ -62,8 +63,13 @@ class Equipo implements JsonSerializable
         return $this;
     }
 
-    public static function getEquipoById(int $id):?Equipo{ // Puede encontrarlo o no (null)
-
+    public static function getEquipoById($id):?Equipo{ // Puede encontrarlo o no (null)
+        $equipo = EquipoModel::getEquipoById($id);
+        if($equipo){
+            return $equipo;
+        }else{
+            return null;
+        }
     }
 
 

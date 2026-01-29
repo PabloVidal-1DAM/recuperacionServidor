@@ -104,11 +104,8 @@ class Jugador implements JSONSerializable
     }
 
     public static function createFromArray(array $datos):Jugador{
-        /*if(!isset($datos['id'])){
-            $indice = 5;
-            $datos['id'] = $indice;
-        }*/
-        $jugador = new Jugador((int)$datos['id'], $datos['nombre'], $datos['email'], $datos['nickname'], (int)$datos['nivel']);
+        $id = $datos['id'] ?? time();
+        $jugador = new Jugador((int)$id, $datos['nombre'], $datos['email'], $datos['nickname'], (int)$datos['nivel']);
         return $jugador;
     }
 }

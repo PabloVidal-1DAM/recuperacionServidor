@@ -31,6 +31,22 @@ $router->get('torneo/rellenarEquipos', function(){
    echo json_encode($torneo);
 });
 
+$router->get('/torneo/calcularMedia', function(){
+   $equipo1 = Equipo::getEquipoById(1);
+   $equipo2 = Equipo::getEquipoById(2);
+   $equipo3 = Equipo::getEquipoById(3);
+   $equipo4 = Equipo::getEquipoById(4);
+
+   $torneo = new Torneo("Prueba", DateTime::createFromFormat('Y-m-d', "2013-22-08"), 76000);
+   $torneo->inscribirEquipo($equipo1);
+   $torneo->inscribirEquipo($equipo2);
+   $torneo->inscribirEquipo($equipo3);
+   $torneo->inscribirEquipo($equipo4);
+
+   $media = $torneo->calcularDificultadMedia();
+   echo json_encode(["media" => "La nota media es de ".$media]);
+});
+
 
 //Resolución de rutas
 $dispatcher = new Phroute\Phroute\Dispatcher($router->getData());
